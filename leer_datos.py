@@ -2,7 +2,7 @@ from collections import defaultdict
 from personas import Persona
 from simulation_parameters import simulation_parameters
 import re # https://stackoverflow.com/questions/1249388/removing-all-non-numeric-characters-from-string-in-python
-
+import Codigo_Graficos as diegod
 VERBOSO = True
 
 def crear_grafo ( personas, reuniones ):
@@ -59,8 +59,14 @@ if __name__ == '__main__':
     CODIGO = 1500
     SEED = 1
     p0 = 33
-    delta_dias = 3
-    personas = f"personas_{CODIGO}.txt"
-    reuniones = f"reuniones_{CODIGO}.txt"
-    grafo = crear_grafo(personas,reuniones)
-    posibles = determinar_contagiados(grafo,p0,delta_dias)
+    lista=[]
+    for i in range (0,4):
+        delta_dias=i
+        personas = f"personas_{CODIGO}.txt"
+        reuniones = f"reuniones_{CODIGO}.txt"
+        grafo = crear_grafo(personas,reuniones)
+        posibles = determinar_contagiados(grafo,p0,delta_dias)
+        #diegod.graficar_infectados(posibles,delta_dias)
+        numero=len(posibles)
+        lista.append(numero)
+    print(lista)
